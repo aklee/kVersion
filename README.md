@@ -10,6 +10,29 @@ kVersion会对比版本文件中，App对应的bundle，system version,device su
 -kVersionOnlyRemote    仅对比更新retmote版本
  
  
+用法
+----------
+kVersion文件引入项目即生效。
+
+配置AppDelegate.m
+```objective-c
+
+    
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    //debug mode：跳过时间判断检测
+    [kVersion sharedVersion].debug=YES;
+    
+    //上架的appid， 可为空
+    [kVersion sharedVersion].appStoreID=@"1115493184";
+
+    //remote的服务器路径
+    [kVersion sharedVersion].remoteUrl=@"https://raw.githubusercontent.com/aklee/test/master/iversonJson.txt";
+    
+   
+}
+```
+
  
 remote版本文件格式
 ----------
@@ -37,24 +60,3 @@ remote版本文件格式
 ```
 
  
-用法
-----------
-
-AppDelegate.m
-```objective-c
-
-    
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
-    //debug mode：跳过时间判断检测
-    [kVersion sharedVersion].debug=YES;
-    
-    //上架的appid， 可为空
-    [kVersion sharedVersion].appStoreID=@"1115493184";
-
-    //remote的服务器路径
-    [kVersion sharedVersion].remoteUrl=@"https://raw.githubusercontent.com/aklee/test/master/iversonJson.txt";
-    
-   
-}
-```
