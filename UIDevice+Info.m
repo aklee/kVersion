@@ -12,6 +12,25 @@
 
 @implementation UIDevice (Info)
 
++ (NSString *)machineName
+{
+    struct utsname systemInfo;
+    uname(&systemInfo);
+    
+    return [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];
+}
+
++ (NSString *)simulatorNamePhone
+{
+    return @"iPhone Simulator";
+}
+
++ (NSString *)simulatorNamePad
+{
+    return @"iPad Simulator";
+}
+
+
 //https://itunes.apple.com/CN/lookup?id=1115493184
 //supportedDevices
 + (NSString *)supportedDeviceName

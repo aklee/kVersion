@@ -28,10 +28,7 @@ typedef NS_OPTIONS(NSUInteger, kVersionPerfer){
 @property(nonatomic,assign)kVersionPerfer type;
 
 @property (nonatomic, copy)NSString* appStoreID;
-
-//jump to update url with alert or not
-//default YES
-@property(nonatomic,assign)bool showAlert;
+ 
 
 @property(nonatomic,copy)NSString* remoteUrl;
 

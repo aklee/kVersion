@@ -6,6 +6,7 @@
 //  Copyright © 2016年 ak. All rights reserved.
 //
 
+ 
 #import "kVersion.h"
 #import "UIDevice+Info.h"
 #import "AppDelegate.h"
@@ -64,10 +65,7 @@ static const NSString * kAppLookupURLFormat = @"http://itunes.apple.com/%@/looku
         
         _curSysVersion  = [UIDevice currentDevice].systemVersion;
         
-        
         _type=kVersionPerferHigerVersion;
-        
-        self.showAlert=YES;
         
         self.launchCheck=YES;
         
@@ -159,7 +157,11 @@ static const NSString * kAppLookupURLFormat = @"http://itunes.apple.com/%@/looku
 #pragma mark - AppStore
 
 //thanks to  https://github.com/nicklockwood/iVersion
--(bool)checkAppStoreUpdate{
+-(void)checkAppStoreUpdate{
+    if (self.appStoreID.length==0) {
+        NSLog(@"kVersion:not check cause appID is null");
+        return;
+    }
     _needUpdateAppStore=NO;
     
     _curAppStoreUrl=[NSString stringWithFormat:@"https://itunes.apple.com/%@/app/id%@?mt=8",self.appStoreCountry,self.appStoreID];
@@ -220,7 +222,6 @@ static const NSString * kAppLookupURLFormat = @"http://itunes.apple.com/%@/looku
         NSLog(@"kVersion: no info  on appstore");
     }
     
-    return NO;
 }
 
 -(void)checkRemoteUpdate{
@@ -313,12 +314,11 @@ static const NSString * kAppLookupURLFormat = @"http://itunes.apple.com/%@/looku
         
         UIViewController*nav =[UIApplication sharedApplication].delegate.window.rootViewController;
         
-        if ([nav isKindOfClass:UINavigationController.class]) {
+        
+        [nav presentViewController:alert animated:YES completion:^{
             
-            [nav presentViewController:alert animated:YES completion:^{
-                
-            }];
-        }
+        }];
+        
     }else{
         
         UIAlertView* view = [[UIAlertView alloc]initWithTitle:[NSString stringWithFormat:@"版本更新(%@)",t] message:msg delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"马上更新",@"不再提醒", nil];
