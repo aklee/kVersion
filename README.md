@@ -9,6 +9,11 @@ kVersion会对比版本文件中，App对应的bundle，system version,device su
 - kVersionOnlyAppStore  仅对比更新appstore版本
 - kVersionOnlyRemote    仅对比更新retmote版本
  
+
+关于选项
+- 马上更新  跳转appstore或者跳转自定义download url(如蒲公英地址)
+- 取消   默认一天内不再提示
+- 不再提示   默认一周内不在提示
  
 用法
 ----------
