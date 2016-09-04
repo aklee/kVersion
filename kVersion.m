@@ -7,6 +7,7 @@
 //
 
 #import "kVersion.h"
+#import "UIDevice+Info.h"
 #import "AppDelegate.h"
 
 #define kiOS8_OR_LATER    ( [[[UIDevice currentDevice] systemVersion] compare:@"8.0"] != NSOrderedAscending )
@@ -209,7 +210,7 @@ static const NSString * kAppLookupURLFormat = @"http://itunes.apple.com/%@/looku
                 NSLog(@"kVersion: find a update on appstore:%@",appStoreVersion);
             }
             else{
-                NSLog(@"kVersion:find new version but not fit");
+                NSLog(@"kVersion:find new version but not fit（pls check:bundle,version,supportedDeviceName,system version）");
             }
             
         }
@@ -271,7 +272,8 @@ static const NSString * kAppLookupURLFormat = @"http://itunes.apple.com/%@/looku
                     NSLog(@"kVersion: find remote version:%@",remoteVersion);
                 }
                 else{
-                    NSLog(@"kVersion:find new version but not fit");
+                    NSLog(@"kVersion:find new version but not fit（pls check:bundle,version,supportedDeviceName,system version）");
+
                 }
             }
         }
